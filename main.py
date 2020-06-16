@@ -1,18 +1,29 @@
-#!/usr/bin/env python
+ #!/usr/bin/env python
 # coding: utf-8
 
-import os
+#import os
 
 TOKEN = '1189867677:AAGkceniFFRCJl-NJ_stQEI2PA4uHmyZhxU'
 
 PORT = int(os.environ.get('PORT', '8443'))
 
-from telegram.ext import Updater, CommandHandler
+#importation 
+from telegram.ext import Updater, CommandHandler, MessageHandler,Filters
 from telegram import Message
 import logging
-from tuto import File
 
-lasttuto = File()
+#import des foctions de retours de messages
+from reponses import tuto, bienv, contenu, inter,member
+
+#importation
+
+#variables messages
+lasttuto = tuto()
+bienmsg = bienv()
+contmsg = contenu()
+intermsg = inter()
+mbrmsg = member()
+#variables messages
 
 updater = Updater(TOKEN, use_context=True)
 
@@ -23,7 +34,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 
 def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text = "Ohayo {} sama ! Je suis le bot de WeLearn, vous pouvez m'appelez Maya je suis là pour vous servir. Dites moi ce que vous désirez, il vous suffit de choisir une commande dans la liste des commandes disponibles".format(update.effective_user.first_name))
+    context.bot.send_message(chat_id=update.effective_chat.id, text = bienmsg.format(update.effective_user.first_name))
 
 start_handler = CommandHandler('start', start)
 
@@ -35,7 +46,7 @@ link_handler = CommandHandler('link', link)
 dispatcher.add_handler(link_handler)
 
 def content(update,  context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text = " Initiation à la programmation avec le C 1 : https://t.me/yeswecode/13 \n Initiation à la programmation avec le C 2 [Les ide]  : https://t.me/yeswecode/24 \n Du code ! : \nhttps://t.me/yeswecode/63")
+    context.bot.send_message(chat_id=update.effective_chat.id, text = contmsg)
     
 content_handler = CommandHandler('content', content)
 dispatcher.add_handler(content_handler)
@@ -47,7 +58,7 @@ last_handler = CommandHandler('last', last)
 dispatcher.add_handler(last_handler)
 
 def quizz(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=" Les variables : http://t.me/QuizBot?start=0TukUH5k")
+    context.bot.send_message(chat_id=update.effective_chat.id, text=intermsg)
     
 quizz_handler = CommandHandler('quizz', quizz)
 dispatcher.add_handler(quizz_handler)
@@ -58,6 +69,11 @@ def mentor(update, context):
 mentor_handler = CommandHandler('mentor', mentor)
 dispatcher.add_handler(mentor_handler)
 
+def nouvmbr(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text=mbrmsg.format(update.effective_user.first_name))
+    
+nouvmbr_handler = MessageHandler(Filters.status_update.new_chat_members, nouvmbr)
+dispatcher.add_handler(nouvmbr_handler)
 
 updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TOKEN)
 updater.bot.set_webhook("https://mayalearnbot.herokuapp.com/" + TOKEN)
