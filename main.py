@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import os
 
+TOKEN = '1189867677:AAGrLX435K705KfoCEz9intn235m1UHWCpo'
+
+PORT = int(os.environ.get('PORT', '8443'))
 
 from telegram.ext import Updater, CommandHandler
 from telegram import Message
@@ -10,7 +14,7 @@ from tuto import File
 
 lasttuto = File()
 
-updater = Updater(token='1189867677:AAGrLX435K705KfoCEz9intn235m1UHWCpo', use_context=True)
+updater = Updater(TOKEN, use_context=True)
 
 dispatcher = updater.dispatcher
 
@@ -55,8 +59,6 @@ mentor_handler = CommandHandler('mentor', mentor)
 dispatcher.add_handler(mentor_handler)
 
 
-
-
-
+updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TOKEN)
 
 
