@@ -59,6 +59,8 @@ mentor_handler = CommandHandler('mentor', mentor)
 dispatcher.add_handler(mentor_handler)
 
 
-updater.stop()
+updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TOKEN)
+updater.bot.set_webhook("https://mayalearnbot.herokuapp.com/" + TOKEN)
+updater.idle()
 
 
