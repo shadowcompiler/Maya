@@ -23,7 +23,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 
 def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text = "Bonjour {}, je suis le bot de WeLearn, vous pouvez m'appelez Maya je suis là pour vous servir. Dites moi ce que vous désirez, il vous suffit de choisir une commande dans la liste des commandes disponibles", format(context.from_user.first_name))
+    context.bot.send_message(chat_id=update.effective_chat.id, text = "Ohayo {} sama, je suis le bot de WeLearn, vous pouvez m'appelez Maya je suis là pour vous servir. Dites moi ce que vous désirez, il vous suffit de choisir une commande dans la liste des commandes disponibles", format(context.from_user.first_name))
 
 start_handler = CommandHandler('start', start)
 
