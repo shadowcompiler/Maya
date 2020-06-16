@@ -3,7 +3,7 @@
 
 import os
 
-TOKEN = '1189867677:AAGrLX435K705KfoCEz9intn235m1UHWCpo'
+TOKEN = '1189867677:AAFC2awVNTR4diwp_xrwoiJEto39C8N3jeg'
 
 PORT = int(os.environ.get('PORT', '8443'))
 
