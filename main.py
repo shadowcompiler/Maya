@@ -5,7 +5,7 @@
 
 TOKEN = '1189867677:AAGkceniFFRCJl-NJ_stQEI2PA4uHmyZhxU'
 
-PORT = int(os.environ.get('PORT', '8443'))
+PORT = int(os.environ.get('PORT', '80'))
 
 #importation 
 from telegram.ext import Updater, CommandHandler, MessageHandler,Filters
@@ -76,7 +76,7 @@ nouvmbr_handler = MessageHandler(Filters.status_update.new_chat_members, nouvmbr
 dispatcher.add_handler(nouvmbr_handler)
 
 updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TOKEN)
-updater.bot.set_webhook("https://mayalearnbot.herokuapp.com/" + TOKEN)
+updater.bot.set_webhook("https://henry-learn-bot.herokuapp.com/"+TOKEN)
 updater.idle()
 
 
