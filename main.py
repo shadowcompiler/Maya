@@ -1,11 +1,7 @@
  #!/usr/bin/env python
 # coding: utf-8
 
-#import os
-
 TOKEN = 'your bot token'
-
-PORT = int(os.environ.get('PORT', '80'))
 
 #import
 from telegram.ext import Updater, CommandHandler, MessageHandler,Filters
