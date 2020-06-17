@@ -3,27 +3,27 @@
 
 #import os
 
-TOKEN = '1189867677:AAGkceniFFRCJl-NJ_stQEI2PA4uHmyZhxU'
+TOKEN = 'your bot token'
 
 PORT = int(os.environ.get('PORT', '80'))
 
-#importation 
+#import
 from telegram.ext import Updater, CommandHandler, MessageHandler,Filters
 from telegram import Message
 import logging
 
-#import des foctions de retours de messages
+#import func
 from reponses import tuto, bienv, contenu, inter,member
 
-#importation
+#import
 
-#variables messages
+#var
 lasttuto = tuto()
 bienmsg = bienv()
 contmsg = contenu()
 intermsg = inter()
 mbrmsg = member()
-#variables messages
+#var
 
 updater = Updater(TOKEN, use_context=True)
 
@@ -40,7 +40,7 @@ start_handler = CommandHandler('start', start)
 
 dispatcher.add_handler(start_handler)
 def link (update, context):
-    context.bot.send_message(chat_id = update.effective_chat.id, text = "Welearn : https://t.me/yeswecode")
+    context.bot.send_message(chat_id = update.effective_chat.id, text = "link")
 
 link_handler = CommandHandler('link', link)
 dispatcher.add_handler(link_handler)
@@ -75,8 +75,7 @@ def nouvmbr(update, context):
 nouvmbr_handler = MessageHandler(Filters.status_update.new_chat_members, nouvmbr)
 dispatcher.add_handler(nouvmbr_handler)
 
-updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TOKEN)
-updater.bot.set_webhook("https://henry-learn-bot.herokuapp.com/"+TOKEN)
+updater.start_polling()
 updater.idle()
 
 
